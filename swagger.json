@@ -36,16 +36,51 @@
       "get": {
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "confederation": {
+                  "example": "any"
+                },
+                "fifaRank": {
+                  "example": "any"
+                },
+                "currentCoach": {
+                  "example": "any"
+                },
+                "worldCupsWon": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "422": {
-            "description": "Unprocessable Entity"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -62,8 +97,17 @@
           }
         ],
         "responses": {
-          "422": {
-            "description": "Unprocessable Entity"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -75,11 +119,44 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "name": {
+                  "example": "any"
+                },
+                "confederation": {
+                  "example": "any"
+                },
+                "fifaRank": {
+                  "example": "any"
+                },
+                "currentCoach": {
+                  "example": "any"
+                },
+                "worldCupsWon": {
+                  "example": "any"
+                }
+              }
+            }
           }
         ],
         "responses": {
-          "422": {
-            "description": "Unprocessable Entity"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -94,8 +171,17 @@
           }
         ],
         "responses": {
-          "422": {
-            "description": "Unprocessable Entity"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -104,16 +190,51 @@
       "get": {
         "description": "",
         "responses": {
-          "default": {
-            "description": ""
+          "200": {
+            "description": "OK"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "body",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "properties": {
+                "firstName": {
+                  "example": "any"
+                },
+                "lastName": {
+                  "example": "any"
+                },
+                "birthday": {
+                  "example": "any"
+                },
+                "position": {
+                  "example": "any"
+                },
+                "team": {
+                  "example": "any"
+                }
+              }
+            }
+          }
+        ],
         "responses": {
-          "422": {
-            "description": "Unprocessable Entity"
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }
@@ -130,8 +251,17 @@
           }
         ],
         "responses": {
-          "422": {
-            "description": "Unprocessable Entity"
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          },
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -156,7 +286,7 @@
                 "lastName": {
                   "example": "any"
                 },
-                "email": {
+                "birthday": {
                   "example": "any"
                 },
                 "position": {
@@ -179,8 +309,8 @@
           "404": {
             "description": "Not Found"
           },
-          "422": {
-            "description": "Unprocessable Entity"
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       },
@@ -198,11 +328,14 @@
           "200": {
             "description": "OK"
           },
+          "400": {
+            "description": "Bad Request"
+          },
           "404": {
             "description": "Not Found"
           },
-          "422": {
-            "description": "Unprocessable Entity"
+          "500": {
+            "description": "Internal Server Error"
           }
         }
       }

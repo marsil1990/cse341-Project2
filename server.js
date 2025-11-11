@@ -24,9 +24,8 @@ app.use((req, res, next) => {
 
 app.use("/", require("./routes/index"));
 
-app.use((err, req, res, next) => {
-  console.error(err.stack || err.message || err);
-  res.status(500).json({ message: err.message || "Internal server error" });
+app.use((req, res) => {
+  res.status(404).json({ message: "Route not found" });
 });
 
 //Detect Errors didn't cath for try catch

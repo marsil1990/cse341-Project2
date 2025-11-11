@@ -1,16 +1,19 @@
 const Team = require("../models/Team");
 const mongoose = require("mongoose");
 
-const getAll = async (req, res, next) => {
+const getAll = async (req, res) => {
   try {
     const teams = await Team.find().lean();
     res.status(200).json(teams);
-  } catch (err) {
-    next(err);
+  } catch (error) {
+    return res.status(500).json({
+      message: "Error retrieving teams",
+      error: error.message,
+    });
   }
 };
 
-const getSingle = async (req, res, next) => {
+const getSingle = async (req, res) => {
   try {
     const { id } = req.params;
 
@@ -24,9 +27,10 @@ const getSingle = async (req, res, next) => {
     if (!team) return res.status(404).json({ message: "Team not found" });
     res.status(200).json(team);
   } catch (error) {
-    const err = new Error("Error fetching Teams");
-    err.status = 400;
-    next(err);
+    return res.status(500).json({
+      message: "Error retrieving team",
+      error: error.message,
+    });
   }
 };
 
@@ -59,13 +63,14 @@ const create = async (req, res) => {
       teamId: result._id,
     });
   } catch (error) {
-    const err = new Error("Some error occurred while creating the Team.");
-    err.status = 500;
-    next(err);
+    return res.status(500).json({
+      message: "Error creating team",
+      error: error.message,
+    });
   }
 };
 
-const updateByid = async (req, res) => {
+const updateByid = async (req, res, next) => {
   try {
     console.log(req.body);
     if (!req.body) {
@@ -90,16 +95,18 @@ const updateByid = async (req, res) => {
       });
     } else res.send({ message: "Team was updated successfully." });
   } catch (error) {
-    const err = new Error("'Some error occurred while updating the contact.'");
-    err.status = 500;
-    next(err);
+    return res.status(500).json({
+      message: "Error updating team",
+      error: error.message,
+    });
   }
 };
 
-const deleteByid = async (req, res) => {
+const deleteByid = async (req, res, next) => {
   try {
-    const teamId = new ObjectId(req.params.id);
-    const result = Team.findByIdAndDelete(teamId);
+    const { id } = req.params;
+    const result = await Team.findByIdAndDelete(id);
+
     if (!result) {
       return res.status(404).json({
         message: `Team with id=${teamId} not found.`,
@@ -110,9 +117,10 @@ const deleteByid = async (req, res) => {
       message: "Team deleted successfully.",
     });
   } catch (error) {
-    const err = new Error("'Some error occurred while updating the Team.'");
-    err.status = 500;
-    next(err);
+    return res.status(500).json({
+      message: "Error deleting team",
+      error: error.message,
+    });
   }
 };
 

@@ -7,9 +7,9 @@ module.exports = (req, res, next) => {
   }
 
   //IF exists errors
-  return res.status(422).json({
+  return res.status(400).json({
     success: false,
-    message: "Validation faild",
+    message: "Bad Request - validation failed",
     errors: errors.array().map((e) => ({
       field: e.path,
       message: e.msg,

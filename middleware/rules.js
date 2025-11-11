@@ -1,5 +1,3 @@
-const mongoose = require("mongoose");
-const validateRequest = require("./validate");
 const { checkschema, param, checkSchema } = require("express-validator");
 
 const saveTeamRules = checkSchema({
@@ -15,20 +13,27 @@ const saveTeamRules = checkSchema({
     in: ["body"],
     isInt: { options: { min: 1 }, errorMessage: "fifaRank >= 1" },
   },
-  currentCoach: { in: ["body"], notEmpty: true },
+  currentCoach: {
+    in: ["body"],
+    notEmpty: { errorMessage: "currentCoach required" },
+  },
   worldCupsWon: {
     in: ["body"],
     optional: true,
-    isInt: { options: { min: 0 } },
+    isInt: { options: { min: 0 }, errorMessage: "worldCupsWon >= 0" },
   },
 });
 
-const team_id = [param("id").isMongoId().withMessage("Invalid contact ID")];
+const team_id = [param("id").isMongoId().withMessage("Invalid tema ID")];
 
 const savePlayerRules = checkSchema({
-  firstName: { in: ["body"], notEmpty: true },
-  lastName: { in: ["body"], notEmpty: true },
-  age: { in: ["body"], notEmpty: true },
+  firstName: { in: ["body"], notEmpty: { errorMessage: "firstname required" } },
+  lastName: { in: ["body"], notEmpty: { errorMessage: "lastname required" } },
+  birthday: {
+    in: ["body"],
+    notEmpty: { errorMessage: "birthday required" },
+    isISO8601: { errorMessage: "birthday must be ISO (YYYY-MM-DD)" },
+  },
   position: {
     in: ["body"],
     isIn: {
@@ -42,6 +47,6 @@ const savePlayerRules = checkSchema({
   },
 });
 
-const player_id = [param("id").isMongoId().withMessage("Invalid id")];
+const player_id = [param("id").isMongoId().withMessage("Invalid player id")];
 
 module.exports = { saveTeamRules, team_id, savePlayerRules, player_id };

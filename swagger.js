@@ -10,7 +10,7 @@ const doc = {
       "This API allow us to get, create, update and delete football Players and football Teams",
   },
   host: "localhost:3000",
-  schemes: ["http"],
+  schemes: ["http", "https"],
 };
 
 swaggerAutogen()(outputFile, endPointsFiles, doc);

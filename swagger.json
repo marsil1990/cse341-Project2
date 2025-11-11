@@ -5,7 +5,7 @@
     "description": "This API allow us to get, create, update and delete football Players and football Teams",
     "version": "1.0.0"
   },
-  "host": "cse341-node-8tg1.onrender.com/",
+  "host": "cse341-node-8tg1.onrender.com",
   "basePath": "/",
   "schemes": [
     "http",

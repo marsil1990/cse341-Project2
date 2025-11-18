@@ -36,14 +36,23 @@ const getSingle = async (req, res) => {
 
 const create = async (req, res) => {
   try {
-    const { name, confederation, fifaRank, currentCoach, worldCupsWon } =
-      req.body;
+    const {
+      name,
+      confederation,
+      fifaRank,
+      currentCoach,
+      worldCupsWon,
+      country,
+      foundedYear,
+    } = req.body;
     if (
       !name ||
       !confederation ||
       !fifaRank ||
       !currentCoach ||
-      !worldCupsWon
+      !worldCupsWon ||
+      !country ||
+      !foundedYear
     ) {
       return res.status(400).send({
         message: "Data to create can not be empty!",
@@ -56,6 +65,8 @@ const create = async (req, res) => {
       fifaRank,
       currentCoach,
       worldCupsWon,
+      country,
+      foundedYear,
     };
     const result = await Team.create(newTeam);
     res.status(201).json({
@@ -78,14 +89,29 @@ const updateByid = async (req, res, next) => {
         message: "Data to update can not be empty!",
       });
     }
-    const { name, confederation, fifaRank, currentCoach, worldCupsWon } =
-      req.body;
+    const {
+      name,
+      confederation,
+      fifaRank,
+      currentCoach,
+      worldCupsWon,
+      country,
+      foundedYear,
+    } = req.body;
 
     const team_id = req.params.id;
 
     const result = await Team.findByIdAndUpdate(
       team_id,
-      { name, confederation, fifaRank, currentCoach, worldCupsWon },
+      {
+        name,
+        confederation,
+        fifaRank,
+        currentCoach,
+        worldCupsWon,
+        country,
+        foundedYear,
+      },
       { new: true, runValidators: true }
     );
 

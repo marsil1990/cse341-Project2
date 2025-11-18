@@ -10,6 +10,12 @@ const teamSchema = new mongoose.Schema({
   fifaRank: { type: Number, required: true },
   currentCoach: { type: String, required: true, trim: true },
   worldCupsWon: { type: Number, required: true },
+  country: { type: String, required: true, trim: true },
+  foundedYear: {
+    type: Number,
+    required: true,
+    min: [1850, "foundedYear must be a valid year"],
+  },
 });
 
 module.exports = mongoose.model("Team", teamSchema, "teams");

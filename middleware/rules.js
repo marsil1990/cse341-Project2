@@ -22,6 +22,17 @@ const saveTeamRules = checkSchema({
     optional: true,
     isInt: { options: { min: 0 }, errorMessage: "worldCupsWon >= 0" },
   },
+  country: {
+    in: ["body"],
+    notEmpty: { errorMessage: "country required" },
+  },
+  foundedYear: {
+    in: ["body"],
+    isInt: {
+      options: { min: 1850, max: new Date().getFullYear() },
+      errorMessage: "Invalid foundedYear",
+    },
+  },
 });
 
 const team_id = [param("id").isMongoId().withMessage("Invalid tema ID")];

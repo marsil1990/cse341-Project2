@@ -9,8 +9,17 @@ const doc = {
     description:
       "This API allow us to get, create, update and delete football Players and football Teams",
   },
-  host: "localhost:3000",
+  // host: "localhost:3000",
   schemes: ["http", "https"],
+  securityDefinitions: {
+    cookieAuth: {
+      type: "apiKey",
+      in: "cookie",
+      name: "connect.sid",
+      description:
+        "Session cookie set after login in via /login (Google OAuth).",
+    },
+  },
 };
 
 swaggerAutogen()(outputFile, endPointsFiles, doc);

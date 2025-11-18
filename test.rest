@@ -1,0 +1,111 @@
+# REST Client file for Football API (Teams & Players)
+# You can use this with the VS Code "REST Client" extension.
+# Select a request and press Ctrl+Alt+R (or click "Send Request").
+
+
+############################################################
+# AUTH & ROOT ROUTES
+
+
+# Root - shows login / logout message depending on authentication
+GET http://localhost:3000
+
+
+# Login with Google (this will redirect in the browser)
+GET https://cse341-node-8tg1.onrender.com/login
+
+### Logout (also redirects)
+GET http://localhost:3000/logout
+
+# Swagger docs (UI in the browser)
+GET http://localhost:3000/api-docs
+
+
+############################################################
+# TEAM ROUTES
+
+
+# Get ALL teams
+GET http://localhost:3000/team
+Accept: application/json
+
+### Get ONE team by id
+# Replace the id with a real Team _id from your database
+GET http://localhost:3000/team/676000000000000000000004
+Accept: application/json
+
+### Create a NEW team (requires authentication)
+POST http://localhost:3000/team
+Content-Type: application/json
+Accept: application/json
+
+{
+  "teamName": "Example FC",
+  "stadiumName": "Example Arena",
+  "league": "Example League",
+  "confederation": "CONMEBOL",
+  "fifaRank": 5,
+  "currentCoach": "John Doe",
+  "worldCupsWon": 2,
+  "country": "Exampleland",
+  "foundedYear": 1920
+}
+
+### Update an existing team by id (requires authentication)
+PUT http://localhost:3000/team/676000000000000000000004
+Content-Type: application/json
+Accept: application/json
+
+{
+  "teamName": "Updated FC",
+  "stadiumName": "Updated Stadium",
+  "league": "Updated League",
+  "confederation": "UEFA",
+  "fifaRank": 3,
+  "currentCoach": "Updated Coach",
+  "worldCupsWon": 3,
+  "country": "Updatedland",
+  "foundedYear": 1905
+}
+
+# Delete a team by id (requires authentication)
+DELETE http://localhost:3000/team/676000000000000000000004
+Accept: application/json
+
+
+############################################################
+# PLAYER ROUTES
+
+
+### Get ALL players
+GET http://localhost:3000/player
+Accept: application/json
+
+# Get ONE player by id
+GET http://localhost:3000/player/676000000000000000000101
+Accept: application/json
+
+# Create a NEW player (requires authentication)
+POST http://localhost:3000/player
+Content-Type: application/json
+Accept: application/json
+
+
+# Update an existing player by id (requires authentication)
+
+PUT http://localhost:3000/player/676000000000000000000101
+Content-Type: application/json
+Accept: application/json
+
+
+
+### Delete a player by id (requires authentication)
+DELETE http://localhost:3000/player/676000000000000000000101
+Accept: application/json
+
+
+############################################################
+# OPTIONAL: USE REMOTE BASE URL INSTEAD OF LOCAL
+
+GET https://cse341-node-8tg1.onrender.com/team
+Accept: application/json
